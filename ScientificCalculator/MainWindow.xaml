@@ -1,0 +1,209 @@
+﻿<Window x:Class="ScientificCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScientificCalculator"
+        mc:Ignorable="d"
+        Title="Scientific Calculator" Height="559.656" Width="1000" KeyDown="Controller">
+    <Grid>
+        <TabControl Margin="10,10,193,10.5">
+            <TabItem x:Name="Draw_Graph_Tab" Header="Draw Graph">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="338*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Draw_Button" Content="Draw" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="375" Click="Draw_Graph_Button_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="Clear_Graph_Button" Content="Clear" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="375" Click="Clear_Graph_Button_Click" Grid.Column="1"/>
+                    <Label Content="f(x) = " HorizontalAlignment="Left" Margin="10,0,0,9.5" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="Function_Text" Height="22" Margin="56,0,10,9.5" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                    <Grid x:Name="Graph_Grid" Margin="10,35,0,0" HorizontalAlignment="Left" Width="757" Height="363" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Min X =" HorizontalAlignment="Left" Margin="10,410,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="68,414,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="Min_X_Text" HorizontalAlignment="Left" Height="23" Margin="68,414,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+                    <Label Content="Min Y =" HorizontalAlignment="Left" Margin="37.76,410,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="Min_Y_Text" HorizontalAlignment="Left" Height="23" Margin="95.76,414,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74" Grid.Column="1"/>
+                    <Label Content="Max X =" HorizontalAlignment="Left" Margin="290.76,410,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="Max_X_Text" HorizontalAlignment="Left" Height="23" Margin="347.76,414,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="76" Grid.Column="1"/>
+                    <Label Content="Max Y =" HorizontalAlignment="Left" Margin="428.76,410,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="Max_Y_Text" HorizontalAlignment="Left" Height="23" Margin="485.76,414,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="76" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Equations">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="23*"/>
+                        <ColumnDefinition Width="630*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Equations_Text" HorizontalAlignment="Left" Height="215" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="766" Grid.ColumnSpan="2"/>
+                    <Label x:Name="Solutions_Label" Content="" HorizontalAlignment="Left" Margin="10,0,0,9.5" Grid.ColumnSpan="2" Width="766" Height="215" VerticalAlignment="Bottom"/>
+                    <Button x:Name="Calculate_Button" Content="Calculate" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="375" Grid.ColumnSpan="2" Click="Calculate_Button_Click"/>
+                    <Button x:Name="Clear_Equations_Button" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="373.5,10,0,0" VerticalAlignment="Top" Width="375" Click="Clear_Equations_Button_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Taylor_Series_Tab" Header="Taylor Series">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="Draw_Taylor_Graph_Button" Content="Draw" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="375" Click="Draw_Taylor_Graph_Button_Click"/>
+                    <Button x:Name="Clear_Taylor_Graph_Button" Content="Clear" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="375" Click="Clear_Taylor_Graph_Button_Click"/>
+                    <Label Content="f(x) =" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+                    <Label Content="N =" HorizontalAlignment="Left" Margin="273,35,0,0" VerticalAlignment="Top"/>
+                    <!--<TextBox x:Name="Taylor_Function_Text" HorizontalAlignment="Left" Height="23" Margin="53,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="215"/>-->
+                    <TextBox x:Name="N_Text" HorizontalAlignment="Left" Height="23" Margin="306,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="215"/>
+                    <Label Content="X0 =" HorizontalAlignment="Left" Margin="527,35,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="X0_Text" HorizontalAlignment="Left" Height="23" Margin="561,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="215"/>
+                    <Grid x:Name="Taylor_Graph_Grid" HorizontalAlignment="Left" Height="388" Margin="10,76,0,0" VerticalAlignment="Top" Width="750"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="53,39,0,0" VerticalAlignment="Top" Width="215">
+                        <ComboBoxItem x:Name="Sin_Item" Content="sin(x)" HorizontalAlignment="Left" Width="213" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Cos_Item" Content="cos(x)" HorizontalAlignment="Left" Width="213"/>
+                        <ComboBoxItem x:Name="Exp_Item" Content="exp(x)" HorizontalAlignment="Left" Width="213"/>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Clock Settings">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="28*"/>
+                        <ColumnDefinition Width="759*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Clock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                    <Label x:Name="Frame_Label" Content="Frame:" HorizontalAlignment="Left" Margin="44,109,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="Frame_ComboBox" HorizontalAlignment="Left" Margin="94,111,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Circle_Item" Content="Circle" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Square_Item" Content="Square" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label x:Name="Numbers_Label" Content="Numbers:" HorizontalAlignment="Left" Margin="298,109,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="Numbers_ComboBox" HorizontalAlignment="Left" Margin="364,111,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="No_Number_Item" Content="No Number" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Eng_Number_Item" Content="English Number" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Roman_Number_Item" Content="Roman Number" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Button x:Name="Clock_Default_Button" Content="Default" HorizontalAlignment="Left" Margin="614,269,0,0" VerticalAlignment="Top" Width="110" Click="Clock_Defult_Button_Click" Grid.Column="1"/>
+                    <Button x:Name="Clock_Apply_Button" Content="Apply" HorizontalAlignment="Left" Margin="474,269,0,0" VerticalAlignment="Top" Width="110" Click="Clock_Apply_Button_Click" Grid.Column="1"/>
+                    <Label x:Name="Background_Color_Label" Content="Background Color:" HorizontalAlignment="Left" Margin="44,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="Frame_Color_Label" Content="Frame Color:" HorizontalAlignment="Left" Margin="298,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="Numbers_Color_Label" Content="Numbers Color:" HorizontalAlignment="Left" Margin="516,150,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="Background_Color_ComboBox" HorizontalAlignment="Left" Margin="157,152,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="White_Clock_Background_Color" Content="White" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Black_Clock_Background_Color" Content="Black" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Clock_Background_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Clock_Background_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Clock_Background_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <ComboBox x:Name="Frame_Color_ComboBox" HorizontalAlignment="Left" Margin="380,152,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Black_Frame_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="White_Frame_Color" Content="White" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Frame_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Frame_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Frame_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <ComboBox x:Name="Numbers_Color_ComboBox" HorizontalAlignment="Left" Margin="614,152,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Black_Number_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="White_Number_Color" Content="White" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Number_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Number_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Number_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label x:Name="Sec_Hand_Color_Label" Content="Sec Hand Color:" HorizontalAlignment="Left" Margin="44,193,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="Sec_Hand_Color_ComboBox" HorizontalAlignment="Left" Margin="144,195,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Black_Second_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="White_Second_Color" Content="White" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Second_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Second_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Second_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label x:Name="Min_Hand_Color_Label" Content="Min Hand Color:" HorizontalAlignment="Left" Margin="298,193,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="Min_Hand_Color_ComboBox" HorizontalAlignment="Left" Margin="400,195,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Black_Minute_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="White_Minute_Color" Content="White" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Minute_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Minute_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Minute_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label x:Name="H_Hand_Color_Label" Content="H Hand Color:" HorizontalAlignment="Left" Margin="525,193,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="H_Hand_Color_ComboBox" HorizontalAlignment="Left" Margin="614,195,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1">
+                        <ComboBoxItem x:Name="Black_Hour_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="White_Hour_Color" Content="White" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Hour_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Hour_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Hour_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <CheckBox Content="Show" Grid.Column="1" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Height="24" Width="94" FontSize="14" IsChecked="True" Checked="Show_Clock_Checked" Unchecked="Show_Clock_Unchecked"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Graph Settings">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Graph" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                    <Label Content="Default Min X =" HorizontalAlignment="Left" Margin="80,54,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Default_Min_X_Text" HorizontalAlignment="Left" Height="23" Margin="179,58,0,0" TextWrapping="Wrap" Text="-6.5" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Default Min Y =" HorizontalAlignment="Left" Margin="434,54,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Default_Min_Y_Text" HorizontalAlignment="Left" Height="23" Margin="532,58,0,0" TextWrapping="Wrap" Text="-4.5" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Default Max X =" HorizontalAlignment="Left" Margin="80,101,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Default_Max_X_Text" HorizontalAlignment="Left" Height="23" Margin="181,105,0,0" TextWrapping="Wrap" Text="6.5" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Default Max Y =" HorizontalAlignment="Left" Margin="434,101,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Default_Max_Y_Text" HorizontalAlignment="Left" Height="23" Margin="534,105,0,0" TextWrapping="Wrap" Text="4.5" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Axis Thickness =" HorizontalAlignment="Left" Margin="80,144,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Axis_Thickness_Text" HorizontalAlignment="Left" Height="23" Margin="182,148,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Sub Axis Thickness =" HorizontalAlignment="Left" Margin="434,144,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Sub_Axis_Thickness_Text" HorizontalAlignment="Left" Height="23" Margin="560,147,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Graph Thickness =" HorizontalAlignment="Left" Margin="80,185,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Graph_Thickness_Text" HorizontalAlignment="Left" Height="23" Margin="193,189,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Graph Accuracy =" HorizontalAlignment="Left" Margin="434,185,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Graph_Accuracy_Text" HorizontalAlignment="Left" Height="23" Margin="544,189,0,0" TextWrapping="Wrap" Text="0.001" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Background Color:" HorizontalAlignment="Left" Margin="80,255,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="193,257,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="White_Graph_Background_Color" Content="White" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Gray_Graph_Background_Color" Content="Gray" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Graph_Background_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Graph_Background_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Graph_Background_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label Content="Graph Color:" HorizontalAlignment="Left" Margin="434,255,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="516,257,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Black_Graph_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Gray_Graph_Color" Content="Gray" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Graph_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Graph_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Graph_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label Content="Axis Color:" HorizontalAlignment="Left" Margin="80,297,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="150,299,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Black_Axis_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Gray_Axis_Color" Content="Gray" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Axis_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Axis_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Axis_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label Content="Sub Axis Color:" HorizontalAlignment="Left" Margin="434,297,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="528,299,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Gray_Sub_Axis_Color" Content="Gray" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Black_Sub_Axis_Color" Content="Black" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Sub_Axis_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Sub_Axis_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Sub_Axis_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label Content="XY Color:" HorizontalAlignment="Left" Margin="80,338,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="143,340,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Black_XY_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Gray_XY_Color" Content="Gray" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_XY_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_XY_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_XY_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Label Content="Numbers Color:" HorizontalAlignment="Left" Margin="434,338,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="532,340,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Black_Numbers_Color" Content="Black" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                        <ComboBoxItem x:Name="Gray_Numbers_Color" Content="Gray" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Blue_Numbers_Color" Content="Blue" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Green_Numbers_Color" Content="Green" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem x:Name="Red_Numbers_Color" Content="Red" HorizontalAlignment="Left" Width="118"/>
+                    </ComboBox>
+                    <Button x:Name="Graph_Apply_Button" Content="Apply" HorizontalAlignment="Left" Margin="516,412,0,0" VerticalAlignment="Top" Width="110" Click="Graph_Apply_Button_Click"/>
+                    <Button x:Name="Graph_Default_Button" Content="Default" HorizontalAlignment="Left" Margin="641,412,0,0" VerticalAlignment="Top" Width="110" Click="Graph_Defult_Button_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid x:Name="Clock_Grid" Height="150" Margin="0,20,20,0" VerticalAlignment="Top" RenderTransformOrigin="0.515,0.96" HorizontalAlignment="Right" Width="150"/>
+
+    </Grid>
+</Window>
